@@ -17,17 +17,13 @@ function deposito() {
         alert("Senha incorreta, tente novamente");
     } else if (senhauser == 3589) {
         let deposit = parseFloat(prompt("Digite o valor do depósito"));
-        if (deposit > 500) {
-            alert("O valor inserido é superior ao valor disponível em sua conta, tente novamente.");
-        } else if (deposit <= 500) {
             saldo += deposit;
             alert("Depósito realizado com sucesso!");
             document.getElementById("result").innerHTML =
                 "Seu saldo atual é: R$" + saldo.toFixed(2);
         }
-    }
+    
 }
-
 
 function extrato() {
     let senhauser = parseFloat(prompt("Digite a senha para ver seu extrato atual"));
@@ -40,10 +36,43 @@ function extrato() {
 }
 
 function saque(){
-    let senhauser = parseFloat(prompt("Digite a senha para ver seu extrato atual"));
-    if (senhauser != 3589) {
+    let saldo = 500;
+
+    let senhauser = parseFloat(prompt("Digite a senha para realizar o saque"));
+    if (senhauser !== 3589) {
         alert("Senha incorreta, tente novamente");
-    } else if (senhauser == 3589) {
-        let sacar = parseFloat(prompt("Digite o valor que você quer sacar "))
+    } else {
+        let sacar = parseFloat(prompt("Digite o valor do saque"));
+        if (sacar > saldo) {
+            alert("O valor inserido é superior ao valor disponível em sua conta, tente novamente.");
+        } else{
+            saldo -= sacar;
+            alert("Saque realizado com sucesso!");
+            document.getElementById("result").innerHTML =
+            "Seu saldo atual é: R$" + saldo.toFixed(2);
+        }
     }
 }
+
+function transferencia(){
+    let saldo = 500;
+
+    let senhauser = parseFloat(prompt("Digite a senha para realizar a tranferência"));
+    if (senhauser !== 3589) {
+        alert("Senha incorreta, tente novamente");
+    } else {
+        let account = parseInt(prompt("Digite a chave PIX para realização da transferência"));
+        alert("Chave inserida com sucesso!");
+
+        let transfer = parseInt(prompt("Quanto você quer transferir?"));
+        if (transfer > saldo) {
+            alert("Operação não autorizada");
+        } else{
+            saldo -= transfer;
+            alert("Transferência realizada com sucesso!");
+            document.getElementById("result").innerHTML =
+            "Seu saldo atual é: R$" + saldo.toFixed(2);
+        }
+    }
+}
+
